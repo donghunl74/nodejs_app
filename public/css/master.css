@@ -1,0 +1,141 @@
+/*
+  Base Style
+*/
+a{
+  text-decoration:none;
+  color:inherit;
+}
+a:hover{
+  text-decoration:underline;
+}
+ul{
+  list-style-type: none;
+  padding:0;
+}
+header h1{
+  color:tomato;
+  text-align:center;
+}
+footer{
+  text-align:center;
+  padding: 20px 0;
+}
+.float_right{
+  float:right;
+  margin-left:5px;
+}
+.error_message{
+  color: tomato;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+table th {
+  padding: 10px;
+  color: #168;
+  border-bottom: 3px solid #168;
+  text-align: left;
+}
+table td {
+  color: #669;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+table tr:hover td {
+  color: #004;
+}
+/*
+  Posts Style
+*/
+
+.posts,
+.login,
+.users{
+  max-width: 800px;
+  margin: 0 auto;
+}
+.posts h3,
+.login h3,
+.users h3{
+  background-color: #75CEF7;
+  padding: 5px 0;
+  padding-left: 2px;
+}
+.posts h2,
+.login h2,
+.users h2{
+  text-align:center;
+}
+.posts .index ul li{
+  padding: 4px;
+}
+.posts .index ul li>span{
+  width: 90px;
+  float:right;
+}
+
+.posts .show .body{
+  min-height:70px;
+  white-space: pre-wrap;
+}
+.posts .show .time{
+  float:right;
+  margin:2px;
+  padding: 5px 10px;
+  background-color: #E4E4E4;
+  border: 0 solid black;
+  border-radius: 5px;
+}
+.posts .show .btn_delete{
+  display:inline-block;
+}
+.posts .show .tools{
+  margin-bottom:20px;
+}
+.posts .posts_form,
+.login .login_form,
+.users .users_form{
+  display:block;
+  width: 400px;
+  margin: 0 auto;
+  margin-bottom:20px;
+}
+.posts .posts_form label,
+.login .login_form label,
+.users .users_form label{
+  display:block;
+  margin:5px 0;
+}
+.posts .posts_form input[type="text"]{
+  width:400px;
+}
+.posts .posts_form textarea{
+  display:block;
+  margin-bottom:10px;
+  width:400px;
+  height: 100px;
+}
+.login .submit_btn,
+.users .submit_btn{
+  display: block;
+  margin-top: 10px;
+}
+.users .show .content{
+  padding-left:15px;
+  padding-bottom:20px;
+}
+.users .show .user_info{
+  font-size: 17px;
+}
+
+.pagination{
+  text-align: center;
+}
+.pagination li{
+  display: inline;
+}
+.searchHighligt {
+  background-color: yellow;
+}
