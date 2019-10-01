@@ -16,13 +16,13 @@
   <form class="posts_form" action="/posts" method="post">
     <label>Title</label>
     <input type="text" name="post[title]" value="">
-    <label>Body</label>
+    <label>Contents</label>
     <textarea name="post[body]" rows="8" cols="80"></textarea>
     <div class="float_right">Author: <%= user.nickname %></div>
-    <button type="submit" name="submit">Submit</button>
+    <button class="btn btn-blue-border" type="submit" name="submit">Submit</button>
   </form>
   <a href="javascript:history.back();">
-    <button type="button" name="back">Back</button>
+    <button class="btn btn-black" type="button" name="back">Back</button>
   </a>
 </div>
 

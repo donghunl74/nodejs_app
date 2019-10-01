@@ -12,7 +12,7 @@ var User = require('../models/User');
 router.get('/', function(req,res){
   var vistorCounter = null;
   var page = Math.max(1,req.query.page)>1?parseInt(req.query.page):1;
-  var limit = Math.max(1,req.query.limit)>1?parseInt(req.query.limit):3;
+  var limit = Math.max(1,req.query.limit)>1?parseInt(req.query.limit):10;
   var search = createSearch(req.query);
 
   async.waterfall([function(callback){
@@ -126,13 +126,13 @@ router.delete('/:id', function(req,res){
 router.post('/:id/comments', function(req,res){
   var newComment = req.body.comment;
   newComment.author = req.user._id;
-  Post.update({_id:req.params.id},{$push:{comments:newComment}},function(err,post){
+  Post.updateOne({_id:req.params.id},{$push:{comments:newComment}},function(err,post){
     if(err) return res.json({success:false, message:err});
     res.redirect('/posts/'+req.params.id+"?"+req._parsedUrl.query);
   });
 }); //create a comment
 router.delete('/:postId/comments/:commentId', function(req,res){
-  Post.update({_id:req.params.postId},{$pull:{comments:{_id:req.params.commentId}}},
+  Post.updateOne({_id:req.params.postId},{$pull:{comments:{_id:req.params.commentId}}},
     function(err,post){
       if(err) return res.json({success:false, message:err});
       res.redirect('/posts/'+req.params.postId+"?"+

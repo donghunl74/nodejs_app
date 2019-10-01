@@ -13,7 +13,7 @@
 <!-- views/users/new.ejs -->
 <div class="new">
   <div class="buttons">
-    <button onclick="location.href='/'">Home</button>
+    <button class="btn btn-red-border" onclick="location.href='/'">Home</button>
   </div>
   <h3>Sign Up</h3>
   <form id="create_user" class="users_form" action="/users" method="post">
@@ -26,9 +26,9 @@
     <label>Password Confirmation* <span id="password_confirmation_error" class="error_message"></span></label>
     <input type="password" id="password_confirmation" name="user[passwordConfirmation]" value="">
     <p><small>*Required</small></p>
-    <input type="button" class="submit_btn" value="Submit">
+    <input type="button" class="btn btn-blue submit_btn" value="Submit">
   </form>
-  <a href="javascript:history.back()"><button>Back</button>
+  <a href="javascript:history.back()"><button class="btn btn-black">Back</button>
 </div>
 <!-- javascript -->
 <script type="text/javascript" src="/js/userform.js"></script>

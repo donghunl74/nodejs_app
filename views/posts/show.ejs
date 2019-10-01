@@ -13,14 +13,14 @@
 
 <!-- views/posts/show.ejs -->
 <div class="show">
-  <div class="buttons floats">
+  <div class="buttons">
     <% if(user && user.equals(post.author._id)) { %>
       <form class="float_right" action="/posts/<%=post._id%>?_method=delete" method="post">
-        <button type="button" onclick="confirm('Your post will be deleted')?this.parentElement.submit():null;">Delete</button>
+        <button class="btn btn-red float_left" type="button" onclick="confirm('Your post will be deleted')?this.parentElement.submit():null;">Delete</button>
       </form>
-      <button class="float_right" onclick="location.href='/posts/<%=post._id%>/edit'">Edit</button>
+      <button class="btn btn-blue float_right" onclick="location.href='/posts/<%=post._id%>/edit'">Edit</button>
     <% } %>
-    <button class="float_left" onclick="location.href='/posts?<%= urlQuery %>'">Back</button>
+    <button class="btn btn-black float_left" onclick="location.href='/posts?<%= urlQuery %>'">Back</button>
   </div>
   <h3>
     <%= post.numId %>.
@@ -28,7 +28,7 @@
       <%= post.title %>
     </span>
   </h3>
-  <div class="content floats">
+  <div class="content">
     <div class="info float_right">
       <div class="highlight" data-highlight="<%= search.highlight.author %>">
         Author: <%= post.author.nickname %>
@@ -58,7 +58,7 @@
               <% if(user && user.equals(comment.author._id)) { %>
                 <form class="delete"  method="post"
                   action="/posts/<%=post._id%>/comments/<%=comment._id%>?_method=delete&<%= urlQuery %>">
-                  <button type="button"
+                  <button class="btn btn-red btn-xs float_right" type="button"
                     onclick="confirm('Your comment will be deleted')?this.parentElement.submit():null;">
                     x
                   </button>
@@ -69,12 +69,13 @@
           </div>
         <% }) %>
       <% } %>
-      <form class="addComment checkValidation"
-        action="/posts/<%=post._id%>/comments?<%= urlQuery %>" method="post">
-        <textarea class="cvRequired" type="text" name="comment[body]"
-          cvRqErrMsg="comments is empty." cvRqErrTo="#cvErrTitle" <%= user?"":"disabled" %>
-          placeholder="<%= user?"Add comment here":"Please login to make a comment" %>"></textarea>
-        <button type="submit" <%= user?"":"disabled" %>>Comment</button>
+      <form class="checkValidation" action="/posts/<%=post._id%>/comments?<%= urlQuery %>" method="post">
+        <div>
+          <textarea cols="80" rows="3" class="cvRequired" type="text" name="comment[body]"
+            cvRqErrMsg="comments is empty." cvRqErrTo="#cvErrTitle" <%= user?"":"disabled" %>
+            placeholder="<%= user?"Add comment here":"Please login to make a comment" %>"></textarea>
+          <button class="btn btn-green" type="submit" <%= user?"":"disabled" %>>Comment</button>
+        </div>
         <div id="cvErrTitle" class="message"></div>
       </form>
     </div>

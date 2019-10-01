@@ -17,13 +17,13 @@
   <%= postsMessage %>
 </div>
   <div class="buttons">
-    <button class="float_left" onclick="location.href='/posts/new'">New</button>
+    <button type="button" class="btn btn-green float_left" onclick="location.href='/posts/new'">New</button>
     <% if(user) {%>
-      <button class="float_right" onclick="location.href='/logout'">Logout</button>
-      <button class="float_right" onclick="location.href='/users/<%= user._id %>'">My Profile (<%= user.nickname %>)</button>
+      <button class="btn btn-red float_right" onclick="location.href='/logout'">Logout</button>
+      <button class="btn btn-blue-border float_right" onclick="location.href='/users/<%= user._id %>'">My Profile (<%= user.nickname %>)</button>
     <% } else { %>
-      <button class="float_right" onclick="location.href='/login'">Login</button>
-      <button class="float_right" onclick="location.href='/users/new'">Sign Up</button>
+      <button class="btn btn-red float_right" onclick="location.href='/login'">Login</button>
+      <button class="btn btn-blue float_right" onclick="location.href='/users/new'">Sign Up</button>
     <% } %>
   </div>
   <table class=”table table-hover”>
@@ -60,24 +60,27 @@
       <% }) %>
     </tbody>
   </table>
-  <ul class="pagination">
-    <%
-      var offset = 3;
-      var partialQuery;
-      if(urlQuery) partialQuery = "&"+urlQuery.replace(/page=(.*?)(&|$)/ig,"");
-    %>
-    <% for(i=1;i<=maxPage;i++){ %>
-      <% if(i<=offset || i>maxPage-offset || (i>=page-(offset-1) && i<=page+(offset-1))){ %>
-        <% if(i != page){ %>
-          <li>[<a href="/posts?page=<%= i %><%= partialQuery %>"> <%= i %> </a>]</li>
-        <% } else { %>
-          <li>[ <b><%= i %></b> ]</li>
+  <div class="text-align:center;">
+    <ul class="pagination">
+      <%
+        var offset = 3;
+        var partialQuery;
+        if(urlQuery) partialQuery = "&"+urlQuery.replace(/page=(.*?)(&|$)/ig,"");
+      %>
+      <% for(i=1;i<=maxPage;i++){ %>
+        <% if(i<=offset || i>maxPage-offset || (i>=page-(offset-1) && i<=page+(offset-1))){ %>
+          <% if(i != page){ %>
+            <li><a href="/posts?page=<%= i %><%= partialQuery %>"> <%= i %> </a></li>
+          <% } else { %>
+            <li><a href="#" class="active"> <b><%= i %></b> </a></li>
+          <% } %>
+        <% } else if(i == offset+1 || i == maxPage-offset){ %>
+            <li>...</li>
         <% } %>
-      <% } else if(i == offset+1 || i == maxPage-offset){ %>
-          <li>...</li>
-      <% } %>
-    <%}%>
-  </ul>
+      <%}%>
+    </ul>
+  </div>
+
   <div class="floats">
     <div class="counter float_left">
       <% if(counter){ %>
@@ -88,7 +91,7 @@
     <br>
     <div class="search float_right">
       <form class="checkValidation" action="/posts/" id="search">
-        <select name="searchType" <%= search.searchType=="author!"?"disabled":"" %>>
+        <select class="select" name="searchType" <%= search.searchType=="author!"?"disabled":"" %>>
           <% var select %>
           <option value="title,body"
             <%= search.searchType=="title,body"?select="selected":"" %>>Title+Body</option>
@@ -104,14 +107,17 @@
               <%= search.searchType=="author"?select="selected":"" %>>Author</option>
           <%}%>
         </select>
-        <input class="cvMinLength" cvMinLength="3"
-          cvMinLenErrTo="#searchError"
-          cvMinLenErrMsg="It should be at least 3 characters"
-          type="text" name="searchText" value="<%= select?search.searchText:"" %>"
-          <%= search.searchType=="author!"?"disabled":"" %>>
-        <button type="submit" <%= search.searchType=="author!"?"disabled":"" %>>search</button>
+
+          <input class="cvMinLength" cvMinLength="3"
+            cvMinLenErrTo="#searchError"
+            cvMinLenErrMsg="It should be at least 3 characters"
+            type="text" name="searchText" value="<%= select?search.searchText:"" %>"
+            <%= search.searchType=="author!"?"disabled":"" %>>
+          <button class="btn btn-blue-border"  type="submit" <%= search.searchType=="author!"?"disabled":"" %>>search</button>
+
+
         <%if(search.searchType){%>
-          <button type="button" onclick="window.location = '/posts?page=1'">cancel</button>
+          <button class="btn btn-black-border" type="button" onclick="window.location = '/posts?page=1'">cancel</button>
         <%}%>
         <div class="message" id="searchError"></div>
       </form>
@@ -120,7 +126,7 @@
 </div>
 <!-- main end -->
     </div><!--posts end -->
-    <br>
+    <br><br>
     <footer>
       <% include ../partials/footer %>
     </footer>
